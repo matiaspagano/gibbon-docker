@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+
+echo "Waiting for mysql server $DB_HOST ..."
+while ! mysqladmin ping -h"$DB_HOST" --silent; do
+    sleep 1
+    echo "still waiting..."
+done
+echo "Mysql server DB up!"
+
+CONFIG=/var/www/html/config.php
+if [ -f "$CONFIG" ]; then
+    echo "$CONFIG exists. Gibbon already installed."
+else
+    echo "AUTOINSTALL?? => ${GIBBON_AUTOINSTALL}."
+    if [ "${GIBBON_AUTOINSTALL}" == "1" ]; then
+        echo "$CONFIG does not exist. Executing auto installer."
+        cd /var/www/html/installer/ && php auto.php
+    else
+        echo "Normal install needed."
+    fi
+fi
+
+echo "Setting permissions."
+chmod -R 755 /var/www/html/ && chown -R www-data:www-data /var/www/html/
+rm -rf /var/www/html/uploads/cache/* 
+
+exec "$@"

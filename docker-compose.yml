@@ -1,0 +1,36 @@
+version: "3"
+services:
+  gibbon:
+    build:
+      context: .
+    container_name: gibbon
+    environment:
+      GIBBON_AUTOINSTALL: 1
+      DB_HOST: db
+      DB_NAME: gibbon
+      DB_USER: gibbon
+      DB_PASSWORD: gibbonpass
+      GIBBON_USERNAME: admin
+      GIBBON_PASSWORD: Admin123
+      GIBBON_EMAIL: admin@admin.com
+      GIBBON_URL: http://localhost:8080
+    ports:
+      - 8080:80
+    depends_on:
+      - "db"
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: gibbon
+      MYSQL_USER: gibbon
+      MYSQL_PASSWORD: gibbonpass
+      MYSQL_ROOT_PASSWORD: gibbonroot
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - gibbon_db:/var/lib/mysql
+volumes:
+  gibbon_db:
