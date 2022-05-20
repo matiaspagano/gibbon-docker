@@ -29,5 +29,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: matiaspagano/gibbon:${{ steps.vars.outputs.tag }} , matiaspagano/gibbon:latest
           labels: ${{ steps.meta.outputs.labels }}
