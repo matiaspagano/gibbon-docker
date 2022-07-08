@@ -38,6 +38,7 @@ RUN echo 'Header set X-XSS-Protection "1; mode=block"' >> /etc/apache2/conf-enab
 
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+RUN printf "expose_php=Off\nupload_max_filesize = 20M\npost_max_size = 20M\nmemory_limit = 512M\nmax_input_vars=4000" >> "$PHP_INI_DIR/php.ini"
 
 EXPOSE 80
 
