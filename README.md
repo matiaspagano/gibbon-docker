@@ -3,7 +3,7 @@ Gibbon School Management System Docker Image
 ## Supported tags and respective `Dockerfile` links
 
 
-* [`23.0.02`, `23.0.02.01` , `latest` (Dockerfile)](https://github.com/matiaspagano/gibbon-docker/blob/main/Dockerfile)
+* [`23.0.02`, `23.0.02.01`, `24.0.0`, `latest` (Dockerfile)](https://github.com/matiaspagano/gibbon-docker/blob/main/Dockerfile)
 
 ## Configuration
 

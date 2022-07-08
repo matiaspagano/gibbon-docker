@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-ENV VERSION=23.0.02
+ENV VERSION=24.0.00
 
 WORKDIR /var/www/html/
 
